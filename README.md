@@ -1,0 +1,1 @@
+Example of a UI test with automated build in flutter.
