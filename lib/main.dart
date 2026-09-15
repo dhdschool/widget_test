@@ -56,14 +56,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter([int n = 1]) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      _counter += n;
     });
   }
 
@@ -103,20 +103,35 @@ class _MyHomePageState extends State<MyHomePage> {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           mainAxisAlignment: .center,
+          spacing: 12.0,
           children: [
             const Text('Dow Draper has pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Row(
+              mainAxisAlignment: .center,
+              spacing: 24.0,
+              children: [
+                FloatingActionButton(
+                  onPressed: () => _incrementCounter(-1),
+                  tooltip: 'Decrement',
+                  child: const Icon(Icons.remove),
+                ),
+
+                Text(
+                  '$_counter',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+
+                FloatingActionButton(
+                  onPressed: _incrementCounter, 
+                  tooltip: 'Increment',
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            )
+            
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      )
     );
   }
 }
